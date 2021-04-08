@@ -140,7 +140,7 @@ configure(){
 
   plain ""
   plain "#########################################"
-  plain "Enable/disable IKCONFIG"
+  plain "Enable/disable IKCONFIG - Disable if building a another kernel patchset"
   plain "Enable access to the kernel configuration file through /proc/config.gz"
   read -rp "`echo $' > 1.Enable\n > 2.Disable\n > Default (Enable)\nchoice[1-2]: '`" _ikconfig;
   if [[ $_ikconfig = "1" ]]; then
@@ -1369,6 +1369,8 @@ configure(){
   if [[ $_cpu_sched = "1" ]]; then
     msg2 "Enable CacULE CPU scheduler..."
     scripts/config --enable CONFIG_CACULE_SCHED
+    msg2 "Disable CacULE-RDB CPU scheduler since XanMod patch enables it on default"
+    scripts/config --disable CONFIG_CACULE_RDB
     msg2 "Disable CFS"
     scripts/config --disable CONFIG_FAIR_GROUP_SCHED
     scripts/config --disable CONFIG_CFS_BANDWIDTH

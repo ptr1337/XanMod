@@ -91,11 +91,11 @@ for _p in "${pkgname[@]}"; do
 done
 # This section set the version for xanmod version. Sometimes xanmod-cacule is behind the main xanmod patch
 if [[ $_cpu_sched = "1" ]] || [[ $_cpu_sched = "2" ]]; then
-  pkgver=5.11.10
-  versiontag=5.11.10-xanmod1-cacule
+  pkgver=5.11.12
+  versiontag=5.11.12-xanmod1-cacule
 else
-  pkgver=5.11.11
-  versiontag=5.11.11-xanmod1
+  pkgver=5.11.12
+  versiontag=5.11.12-xanmod1
 fi
 major=5.11
 pkgrel=1
@@ -124,22 +124,24 @@ source=("https://mirrors.edge.kernel.org/pub/linux/kernel/v5.x/linux-$major.tar.
         "$patchsource/lqx-patches/0001-lqx-patches.patch"
         "$patchsource/wine-patches/0007-v5.11-winesync.patch"
         "$patchsource/misc/vm.max_map_count.patch")
-md5sums=("d2985a3f16ef1ea3405c04c406e29dcc"  #linux-5.11.tar.xz
-         "f99b82d6f424d1a729a9b8c5a1be2b84"  #0005-Disable-CPU_FREQ_GOV_SCHEDUTIL.patch
-         "9a6ac945f08f93c6d778618100ddf753"  #0001-ZEN-Add-VHBA-driver.patch
-         "379a49cafda4a5448b7a873722eb1a96"  #0001-bfq-patches.patch
-         "76d68d069b5947349933c6baba07cf2f"  #0001-aufs-20210308.patch
-         "766941966c8db36612b0c04227429e51"  #0001-btrfs-patches.patch
-         "0ab93e8e3437a5093520c10cca741531"  #0001-v4l2loopback-5.11-merge-v0.12.5.patch
-         "cc70bf905a1237a41b11338b2eba4a8b"  #0001-mm-patches.patch
-         "49b4c1a2098d0f0584eb8d0eda2a60c9"  #0001-spadfs-5.11-merge-v1.0.13.patch
-         "64e629e48f15cc0ebddfee366386f17a"  #0001-zswap-patches.patch
-         "f7e7e6cddb72ad8ae741849dddb6e6fa"  #0001-pf-patches.patch
-         "e7ef63d6e6fb1ed9d8c2b4d3f65de86c"  #0002-HID-quirks-Add-Apple-Magic-Trackpad-2-to-hid_have_sp.patch
-         "9c37d7643710ffa49552cc43b96980ed"  #0001-ksm-patches.patch
-         "4f5b46d26699b4f4e7d7bc153979d3e0"  #0001-lqx-patches.patch
-         "ab8f21e210aec26c7825033d57433e33"  #0007-v5.11-winesync.patch
-         "27e6001bacfcfca1c161bf6ef946a79b") #vm.max_map_count.patch
+md5sums=('d2985a3f16ef1ea3405c04c406e29dcc'
+         'f99b82d6f424d1a729a9b8c5a1be2b84'
+         '6042ba527a2379f858fbc099caa7dc70'
+         '379a49cafda4a5448b7a873722eb1a96'
+         '76d68d069b5947349933c6baba07cf2f'
+         '766941966c8db36612b0c04227429e51'
+         '0ab93e8e3437a5093520c10cca741531'
+         'cc70bf905a1237a41b11338b2eba4a8b'
+         '49b4c1a2098d0f0584eb8d0eda2a60c9'
+         '64e629e48f15cc0ebddfee366386f17a'
+         'f7e7e6cddb72ad8ae741849dddb6e6fa'
+         'e7ef63d6e6fb1ed9d8c2b4d3f65de86c'
+         '9c37d7643710ffa49552cc43b96980ed'
+         '4f5b46d26699b4f4e7d7bc153979d3e0'
+         'ab8f21e210aec26c7825033d57433e33'
+         '27e6001bacfcfca1c161bf6ef946a79b'
+         '8e71f0c43157654c4105224d89cc6709'
+         '88c64c712b9e38c312006f2c3eebcf70')
 #zenify workarround
 if [[ $_cpu_sched != "1" ]] && [[ $_cpu_sched != "2" ]]; then
   source+=("$patchsource/misc/zenify.patch")
@@ -147,10 +149,10 @@ if [[ $_cpu_sched != "1" ]] && [[ $_cpu_sched != "2" ]]; then
 fi
 if [[ $_cpu_sched = "1" ]] || [[ $_cpu_sched = "2" ]]; then
   source+=("https://github.com/xanmod/linux/releases/download/$versiontag/patch-$versiontag.xz")
-  md5sums+=("211e07ada1f7653bc28208c3cf5cb49b")  #patch-5.11.10-xanmod1-cacule.xz
+  md5sums+=("211e07ada1f7653bc28208c3cf5cb49b")  #patch-5.11.12-xanmod1-cacule.xz
 else
   source+=("https://github.com/xanmod/linux/releases/download/$versiontag/patch-$versiontag.xz")
-  md5sums+=("03f7a5b8c0b87d52cb5e21d221e48648")  #patch-5.11.11-xanmod1.xz
+  md5sums+=("03f7a5b8c0b87d52cb5e21d221e48648")  #patch-5.11.12-xanmod1.xz
 fi
 
 export KBUILD_BUILD_HOST=archlinux
